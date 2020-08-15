@@ -26,17 +26,38 @@ function valNumber () {
     var useSymbols = window.confirm(`Would you like to use symbols in your password?`);
     var useNumbers = window.confirm(`Would you like to use numbers in your password?`);
 
-  }
-}
+    if(numLength > 8 && numLength < 128) {
+
+      while(masterArray.length < numLength) {
+        console.log(`masterArray length ` + masterArray.length);
+        if(lowerCase && masterArray.length < numLength) {
+          getRandom(lowerArray);
+        }
+        if(upperCase && masterArray.length < numLength) {
+          getRandom(capArray);
+        }
+        if(useSymbols && masterArray.length < numLength) {
+          getRandom(symbolArray);
+        }
+        if(useNumbers && masterArray.length < numLength) {
+          getRandom(numberArray);
+        }
+      }
+    } else {
+      window.alert(`Please choose`);
+    }
+  } while(!(numLength > 8 && numLength < 128));
+};
+
+
+
+
 // prompt for length of pw
 
 // prompt for character types, uppercase or lowercase to use in pw
 
 //prompt for char types, symbols
 
-
-
-var length = prompt("Please choose a number between 8 and 128.");
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
