@@ -11,6 +11,7 @@ var capArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 var symbolArray = ["!", "@", "#", "$", "%", "^", "&", "*", "-", ".", "?"];
 var numberArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
+// this function activates the valNumber function on line 19 and then returns all the data and compiles it to the masterArray
 function generatePassword() {
   valNumber();
   return masterArray.join("");
@@ -40,6 +41,7 @@ function valNumber() {
   // if statement making sure password length is at least 8 char and no more than 128 char
   if (numLength >= 8 && numLength <= 128) {
 
+    // as long as the length of the masterArray is less than the number length given by the user from the prompt the following will continue
     while (masterArray.length < numLength) {
       console.log("masterArray length " + masterArray.length);
       if (lowerCase && masterArray.length < numLength) {
@@ -60,8 +62,9 @@ function valNumber() {
   }
 };
 
-
+// this function takes all the getRandom info from the if/while section above and puts them into a new array which puts it into a math.floor/math.random equation that takes the array and pushes it to the masterArray up at the top.
 function getRandom(array) {
+
   let randomItem = array[Math.floor(Math.random() * array.length)];
   masterArray.push(randomItem);
   
@@ -72,7 +75,7 @@ function getRandom(array) {
 
 // Get references to the #generate element
 
-// Write password to the #password input
+// when this function is activated, it activates the generatePassword function on line 15
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -81,5 +84,5 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
+// when the button is clicked, the writePassword function is activated
 generateBtn.addEventListener("click", writePassword);
