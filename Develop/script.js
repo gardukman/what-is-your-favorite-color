@@ -1,66 +1,76 @@
 // Assignment code here
-
+// debugger;
 // welcome alert
 window.alert("Welcome to the random password generator.")
 
 var generateBtn = document.querySelector("#generate");
-let password = "";
-let masterArray = [];
-let lowerArray = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `x`, `y`, `z`];
-let capArray = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`];
-let symbolArray = [`!`, `@`, `#`, `$`, `%`, `^`, `&`, `*`, `-`, `.`, `?`];
-let numberArray = [`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0`];
+var password = "";
+var masterArray = [];
+var lowerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var capArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var symbolArray = ["!", "@", "#", "$", "%", "^", "&", "*", "-", ".", "?"];
+var numberArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
+function generatePassword() {
+  valNumber();
+  return masterArray.join("");
+}
+function valNumber() {
+  // get the length of password from the user
+  var numLength = window.prompt("Please choose the length of your password. Choose a number between 8 and 128");
+  // takes the number from the prompt to use as the length of the password - this turns the number from the user to the int
+  numLength = parseInt(numLength);
 
-function valNumber () {
-  do {
-    // lower and upper case letters
-    var numLength = window.prompt(`Please choose the length of your password. Choose a number between 8 and 128`);
-    numLength = parseInt(numLength);
+  // true/false statement asking if lowercase letters are wanted in password
+  var lowerCase = window.confirm("Would you like to use lowercase letters in your password?");
+  console.log(lowerCase)
 
-    var lowerCase = window.confirm(`Would you like to use lowercase letters in your password?`);
+  // true/false statement asking if uppercase letters are wanted in password  
+  var upperCase = window.confirm("Would you like to use uppercase letters in your password?");
+  console.log(upperCase);
 
-    var upperCase = window.confirm(`Would you like to use uppercase letters in your password?`);
-    
-    // symbols and numbers
-    var useSymbols = window.confirm(`Would you like to use symbols in your password?`);
-    var useNumbers = window.confirm(`Would you like to use numbers in your password?`);
+  // true/false statement asking if symbols are wanted in password
+  var useSymbols = window.confirm("Would you like to use symbols in your password?");
+  console.log(useSymbols);
 
-    if(numLength > 8 && numLength < 128) {
+  // true/false statement asking if numbers are wanted in password
+  var useNumbers = window.confirm("Would you like to use numbers in your password?");
+  console.log(useNumbers);
 
-      while(masterArray.length < numLength) {
-        console.log(`masterArray length ` + masterArray.length);
-        if(lowerCase && masterArray.length < numLength) {
-          getRandom(lowerArray);
-        }
-        if(upperCase && masterArray.length < numLength) {
-          getRandom(capArray);
-        }
-        if(useSymbols && masterArray.length < numLength) {
-          getRandom(symbolArray);
-        }
-        if(useNumbers && masterArray.length < numLength) {
-          getRandom(numberArray);
-        }
+  // if statement making sure password length is at least 8 char and no more than 128 char
+  if (numLength >= 8 && numLength <= 128) {
+
+    while (masterArray.length < numLength) {
+      console.log("masterArray length " + masterArray.length);
+      if (lowerCase && masterArray.length < numLength) {
+        getRandom(lowerArray);
       }
-    } else {
-      window.alert(`Please choose`);
+      if (upperCase && masterArray.length < numLength) {
+        getRandom(capArray);
+      }
+      if (useSymbols && masterArray.length < numLength) {
+        getRandom(symbolArray);
+      }
+      if (useNumbers && masterArray.length < numLength) {
+        getRandom(numberArray);
+      }
     }
-  } while(!(numLength > 8 && numLength < 128));
+  } else {
+    window.alert("Please choose");
+  }
 };
 
 
+function getRandom(array) {
+  let randomItem = array[Math.floor(Math.random() * array.length)];
+  masterArray.push(randomItem);
+  
+  console.log(masterArray);
+}
 
-
-// prompt for length of pw
-
-// prompt for character types, uppercase or lowercase to use in pw
-
-//prompt for char types, symbols
 
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
